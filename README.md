@@ -13,6 +13,15 @@ But what is, if you just want a Generic inteface to XML such as StAX, SAX or DOM
 
 Therefore I created This Package.
 
+## How I Can get it?
+
+Download The Package or git-clone it:
+```
+git clone https://github.com/maxymania/gostax.git
+```
+
+than copy the folder xml.api within gostax/src/ into your src/ folder of your go project.
+
 ## Package "xml.api/pull"
 
 This Go Package defines the XML-Pull-API of the StAX-Pattern.
