@@ -1,0 +1,196 @@
+---
+layout: godoc
+title: Package xml.api/pull
+permalink: /doc/xml.api/pull
+---
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "xml.api/pull"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index">Index</a></dd>
+			
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+This package implements a Streaming API for reading XML.
+Traditionally, XML APIs are either:
+</p>
+<p>
+* DOM based - the entire document is read into memory as a tree structure for random access by the calling application;
+</p>
+<p>
+* event based - the application registers to receive events as entities are encountered within the source document.
+</p>
+<p>
+The traditional Go way is
+* object Based - the entire document is read into memory as a object structure (de-/serializing).
+</p>
+<p>
+In Contrast pull/StAX has a Reader-Based Approach:
+The Programmer Manually Calls Read() for any Element, thus the Document Model isn&#39;t Bound to a Specific Model (Go types).
+</p>
+<p>
+This Package has only Intefaces, Not Implementations
+</p>
+
+			</div>
+		</div>
+		
+	
+		<h2 id="pkg-index">Index</h2>
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+		<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="#NodeType">type NodeType</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NodeType.String">func (nt NodeType) String() string</a></dd>
+				
+			
+				
+				<dd><a href="#XmlReader">type XmlReader</a></dd>
+				
+				
+			
+			
+		</dl>
+
+		
+
+		
+			<h4>Package files</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="/target/basics.go">basics.go</a>
+			
+				<a href="/target/reader.go">reader.go</a>
+			
+			</span>
+			</p>
+		
+	
+		
+		
+		
+		
+			
+			
+			<h2 id="NodeType">type <a href="/target/basics.go?s=757:776#L9">NodeType</a></h2>
+			<pre>type NodeType int16</pre>
+			
+
+			
+				<pre>const (
+    None NodeType = iota
+
+    <span class="comment">// The First Node of all Nodes in a XML-Document</span>
+    StartDocument
+
+    <span class="comment">// The Last Node of all Nodes in a XML-Document</span>
+    EndDocument
+
+    <span class="comment">// The Start of an Element</span>
+    StartElement
+
+    <span class="comment">// The End of an Element</span>
+    EndElement
+
+    <span class="comment">// Just Text</span>
+    Text
+
+    <span class="comment">// The Attribute of an StartElement</span>
+    <span class="comment">// it is assigned to the Previously received StartElement-Element</span>
+    Attribute
+)</pre>
+				
+			
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="NodeType.String">func (NodeType) <a href="/target/basics.go?s=1405:1439#L43">String</a></h3>
+				<pre>func (nt NodeType) String() string</pre>
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="XmlReader">type <a href="/target/reader.go?s=14:517#L1">XmlReader</a></h2>
+			<pre>type XmlReader interface {
+    <span class="comment">// Reads The Next Element. It returns true if an Element was Read</span>
+    <span class="comment">// and false, for example if The Document has ended</span>
+    Read() bool
+
+    <span class="comment">// Gets The current Elements NodeType</span>
+    NodeType() NodeType
+
+    <span class="comment">// Gets The current Elements name, wich is an element-name or an attribute-name</span>
+    Name() string
+
+    <span class="comment">// Gets the current Elements value, wich is Text or an attribute-value</span>
+    Value() string
+
+    <span class="comment">// Gets the error that caused the Read()-Method to return false, if any</span>
+    GetError() error
+}</pre>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+		
+		</div>
+	
+
+	
+
+
+
+
+
+
+

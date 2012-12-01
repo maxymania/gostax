@@ -1,0 +1,322 @@
+---
+layout: godoc
+title: Package xml.api/streamxmlp
+permalink: /doc/xml.api/streamxmlp
+---
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "xml.api/streamxmlp"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index">Index</a></dd>
+			
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+			</div>
+		</div>
+		
+	
+		<h2 id="pkg-index">Index</h2>
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+		<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="#PullXmlReader">type PullXmlReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewPullParser">func NewPullParser(src io.RuneReader) *PullXmlReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewPullParserFromReader">func NewPullParserFromReader(src io.Reader) *PullXmlReader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PullXmlReader.GetError">func (xr *PullXmlReader) GetError() error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PullXmlReader.Name">func (xr *PullXmlReader) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PullXmlReader.NodeType">func (xr *PullXmlReader) NodeType() pull.NodeType</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PullXmlReader.Read">func (xr *PullXmlReader) Read() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PullXmlReader.Value">func (xr *PullXmlReader) Value() string</a></dd>
+				
+			
+				
+				<dd><a href="#XmlParser">type XmlParser</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#XmlParser.AttrValue">func (x *XmlParser) AttrValue() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#XmlParser.IsOK">func (x *XmlParser) IsOK() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#XmlParser.Next">func (x *XmlParser) Next()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#XmlParser.ReadElement">func (x *XmlParser) ReadElement(name, value *string) int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#XmlParser.SkipSpace">func (x *XmlParser) SkipSpace()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#XmlParser.Text">func (x *XmlParser) Text()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#XmlParser.Trunc">func (x *XmlParser) Trunc()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#XmlParser.Write">func (x *XmlParser) Write()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#XmlParser.XmlName">func (x *XmlParser) XmlName() bool</a></dd>
+				
+			
+			
+		</dl>
+
+		
+
+		
+			<h4>Package files</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="/target/parser.go">parser.go</a>
+			
+				<a href="/target/pullapi.go">pullapi.go</a>
+			
+			</span>
+			</p>
+		
+	
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<pre>const (
+    Fail = iota
+    BeginElem
+    EndElem
+    Text
+    Attr
+)</pre>
+				
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="PullXmlReader">type <a href="/target/pullapi.go?s=106:214#L1">PullXmlReader</a></h2>
+			<pre>type PullXmlReader struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}</pre>
+			<p>
+This is a pull.XmlReader Implementation
+</p>
+
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="NewPullParser">func <a href="/target/pullapi.go?s=519:571#L18">NewPullParser</a></h3>
+				<pre>func NewPullParser(src io.RuneReader) *PullXmlReader</pre>
+				<p>
+Creates a XmlReader From the given RuneReader.
+</p>
+
+				
+			
+				
+				<h3 id="NewPullParserFromReader">func <a href="/target/pullapi.go?s=314:372#L10">NewPullParserFromReader</a></h3>
+				<pre>func NewPullParserFromReader(src io.Reader) *PullXmlReader</pre>
+				<p>
+Creates a XmlReader From the given Reader.
+This equals NewPullParser(bufio.NewReader(src)).
+</p>
+
+				
+			
+
+			
+				
+				<h3 id="PullXmlReader.GetError">func (*PullXmlReader) <a href="/target/pullapi.go?s=1554:1595#L62">GetError</a></h3>
+				<pre>func (xr *PullXmlReader) GetError() error</pre>
+				
+				
+				
+			
+				
+				<h3 id="PullXmlReader.Name">func (*PullXmlReader) <a href="/target/pullapi.go?s=1436:1474#L60">Name</a></h3>
+				<pre>func (xr *PullXmlReader) Name() string</pre>
+				
+				
+				
+			
+				
+				<h3 id="PullXmlReader.NodeType">func (*PullXmlReader) <a href="/target/pullapi.go?s=1363:1412#L59">NodeType</a></h3>
+				<pre>func (xr *PullXmlReader) NodeType() pull.NodeType</pre>
+				
+				
+				
+			
+				
+				<h3 id="PullXmlReader.Read">func (*PullXmlReader) <a href="/target/pullapi.go?s=651:687#L25">Read</a></h3>
+				<pre>func (xr *PullXmlReader) Read() bool</pre>
+				
+				
+				
+			
+				
+				<h3 id="PullXmlReader.Value">func (*PullXmlReader) <a href="/target/pullapi.go?s=1494:1533#L61">Value</a></h3>
+				<pre>func (xr *PullXmlReader) Value() string</pre>
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="XmlParser">type <a href="/target/parser.go?s=394:496#L19">XmlParser</a></h2>
+			<pre>type XmlParser struct {
+    Rd          io.RuneReader
+    Buffer      bytes.Buffer
+    Chr         rune
+    Err         error
+    AwaitAttrib bool
+}</pre>
+			<p>
+This is the underlying XmlParser-Implementation. Please don&#39;t use it directly.
+</p>
+
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="XmlParser.AttrValue">func (*XmlParser) <a href="/target/parser.go?s=1001:1036#L52">AttrValue</a></h3>
+				<pre>func (x *XmlParser) AttrValue() bool</pre>
+				
+				
+				
+			
+				
+				<h3 id="XmlParser.IsOK">func (*XmlParser) <a href="/target/parser.go?s=497:527#L26">IsOK</a></h3>
+				<pre>func (x *XmlParser) IsOK() bool</pre>
+				
+				
+				
+			
+				
+				<h3 id="XmlParser.Next">func (*XmlParser) <a href="/target/parser.go?s=550:575#L29">Next</a></h3>
+				<pre>func (x *XmlParser) Next()</pre>
+				
+				
+				
+			
+				
+				<h3 id="XmlParser.ReadElement">func (*XmlParser) <a href="/target/parser.go?s=2026:2080#L118">ReadElement</a></h3>
+				<pre>func (x *XmlParser) ReadElement(name, value *string) int</pre>
+				<p>
+This Method returns BeginElem, EndElem, Text, Attr or Fail.
+And it sets the &#39;name&#39;, and &#39;value&#39; variables.
+</p>
+
+				
+				
+			
+				
+				<h3 id="XmlParser.SkipSpace">func (*XmlParser) <a href="/target/parser.go?s=1328:1358#L76">SkipSpace</a></h3>
+				<pre>func (x *XmlParser) SkipSpace()</pre>
+				
+				
+				
+			
+				
+				<h3 id="XmlParser.Text">func (*XmlParser) <a href="/target/parser.go?s=891:916#L44">Text</a></h3>
+				<pre>func (x *XmlParser) Text()</pre>
+				
+				
+				
+			
+				
+				<h3 id="XmlParser.Trunc">func (*XmlParser) <a href="/target/parser.go?s=611:637#L30">Trunc</a></h3>
+				<pre>func (x *XmlParser) Trunc()</pre>
+				
+				
+				
+			
+				
+				<h3 id="XmlParser.Write">func (*XmlParser) <a href="/target/parser.go?s=662:688#L31">Write</a></h3>
+				<pre>func (x *XmlParser) Write()</pre>
+				
+				
+				
+			
+				
+				<h3 id="XmlParser.XmlName">func (*XmlParser) <a href="/target/parser.go?s=719:752#L33">XmlName</a></h3>
+				<pre>func (x *XmlParser) XmlName() bool</pre>
+				
+				
+				
+			
+		
+		</div>
+	
+
+	
+
+
+
+
+
+
+
