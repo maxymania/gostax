@@ -4,16 +4,15 @@ title: Go Streaming API for XML and more
 ---
 
 <div id="home">
-  <h1>Someday here will be a website.</h1>
-  hi
+  <h1>Packages</h1>
+  <ul>
+  <li><a href="./gopkg/pull.html">xml.api/pull</a> An StAX-Like XML-Reader Interface for go</li>
+  <li><a href="./gopkg/streamxmlp.html">xml.api/streamxmlp</a> An XML Parser, Implements the interface in the package "xml.api/pull"</li>
+  </ul>
   <h1>Blog Posts</h1>
   <ul class="posts">
     {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href=".{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
-  <h1>Blog Posts</h1>
-  <ul>
-  <li><a href="./gopkg/pull.html">godoc "xml.api/pull"</a></li>
-  <li><a href="./gopkg/streamxmlp.html">godoc "xml.api/streamxmlp"</a></li>
 </div>
