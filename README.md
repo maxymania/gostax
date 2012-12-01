@@ -17,6 +17,7 @@ Therefore I created This Package.
 
 This Go Package defines the XML-Pull-API of the StAX-Pattern.
 
+```
 type NodeType int16
 
 const (
@@ -61,11 +62,13 @@ type XmlReader interface {
     // Gets the error that caused the Read()-Method to return false, if any
     GetError() error
 }
+```
 
 ## Package "xml.api/streamxmlp"
 
 This Go Package implements a Basic but Fast (I hope) XML-Parser.
 
+```
 type PullXmlReader struct {
     // contains filtered or unexported fields
 }
@@ -87,3 +90,4 @@ func (xr *PullXmlReader) NodeType() pull.NodeType
 func (xr *PullXmlReader) Read() bool
 
 func (xr *PullXmlReader) Value() string
+```
