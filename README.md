@@ -8,8 +8,7 @@ Go Streaming API for XML (and More)
 Go has a package called "encoding/xml". It Supports the serialization and deserialization of XML as well as Streaming XML Parsing.
 When I Created this Package, I thought that the "encoding/xml" package is just about Marhsaling and Unmarshaling of Structures (Oops!).
 
-I wanted a Generic inteface to XML such as StAX, SAX or DOM?
-
+I wanted a Generic inteface to XML such as StAX, SAX or DOM.
 Therefore I created This Package and I hope that it will be useful.
 
 ## How I Can get it?
