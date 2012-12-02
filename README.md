@@ -19,89 +19,50 @@ Download The Package or git-clone it:
 git clone https://github.com/maxymania/gostax.git
 ```
 
-## Package "xml.api/pull"
+## Examples
 
-This Go Package defines the XML-Pull-API of the StAX-Pattern.
+pull-example.go:
+```go
+package main
 
-```
-type NodeType int16
+import "io"
+// import "bytes"
+import "strings"
+import "fmt"
+import "xml.api/streamxmlp"
+import "xml.api/pull"
 
-const (
-    None NodeType = iota
+const examplexml = `<?xml version="1.0" encoding="UTF-8" ?>
+<note> 
+	<to>Tove</to> 
+	<from>Jani</from> 
+	<heading>Reminder</heading> 
+	<body>Don't forget me this weekend!</body> 
+</note>`
 
-    // The First Node of all Nodes in a XML-Document
-    StartDocument
 
-    // The Last Node of all Nodes in a XML-Document
-    EndDocument
-
-    // The Start of an Element
-    StartElement
-
-    // The End of an Element
-    EndElement
-
-    // Just Text
-    Text
-
-    // The Attribute of an StartElement
-    // it is assigned to the Previously received StartElement-Element
-    Attribute
-)
-
-func (nt NodeType) String() string
-
-type XmlReader interface {
-    // Reads The Next Element. It returns true if an Element was Read
-    // and false, for example if The Document has ended
-    Read() bool
-
-    // Gets The current Elements NodeType
-    NodeType() NodeType
-
-    // Gets The current Elements name, wich is an element-name or an attribute-name
-    Name() string
-
-    // Gets the current Elements value, wich is Text or an attribute-value
-    Value() string
-
-    // Gets the error that caused the Read()-Method to return false, if any
-    GetError() error
+func main(){
+	// The RuneReader to Read the XML From
+	var r io.RuneReader
+	
+	// The XmlReader Object
+	var xr pull.XmlReader
+	r = strings.NewReader(examplexml)
+	
+	// Creating a new XmlReader (Implementation : streamxmlp)
+	xr = streamxmlp.NewPullParser(r)
+	
+	for xr.Read() {
+		fmt.Println(xr.NodeType(),",",xr.Name(),",",xr.Value())
+	}
+	fmt.Println("EOP")
 }
-```
-
-## Package "xml.api/streamxmlp"
-
-Yet another XML Parser in Go.
-This Go Package implements a Basic but Fast (I hope) XML-Parser.
-
-```
-type PullXmlReader struct {
-    // contains filtered or unexported fields
-}
-    This is a pull.XmlReader Implementation
-
-func NewPullParser(src io.RuneReader) *PullXmlReader
-    Creates a XmlReader From the given RuneReader.
-
-func NewPullParserFromReader(src io.Reader) *PullXmlReader
-    Creates a XmlReader From the given Reader. This equals
-    NewPullParser(bufio.NewReader(src)).
-
-func (xr *PullXmlReader) GetError() error
-
-func (xr *PullXmlReader) Name() string
-
-func (xr *PullXmlReader) NodeType() pull.NodeType
-
-func (xr *PullXmlReader) Read() bool
-
-func (xr *PullXmlReader) Value() string
 ```
 
 ## Go Docs Can be found here
 
 http://maxymania.github.com/gostax/
+Or in the wiki
 
 ## License
 
