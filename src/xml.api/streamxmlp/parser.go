@@ -32,6 +32,18 @@ type XmlParser struct{
 	Chr rune
 	Err error
 	AwaitAttrib bool
+	elemstack []string
+}
+func (x *XmlParser)popElem() (r string){
+	if x.elemstack==nil { return "" }
+	l := len(x.elemstack)
+	if l==0 { return "" }
+	r = x.elemstack[l-1]
+	x.elemstack = x.elemstack[:l-1]
+	return
+}
+func (x *XmlParser)pushElem(r string) {
+	x.elemstack = append(x.elemstack,r)
 }
 func (x *XmlParser)IsOK() bool{
 	return x.Err==nil
@@ -132,13 +144,17 @@ func (x *XmlParser)ReadElement(name,value *string) int{
 	if !x.IsOK() { return Fail }
 	if x.AwaitAttrib {
 		x.SkipSpace()
+		ending := false
 		switch x.Chr {
 		case '/':
 			x.Next()
+			ending = true
 			fallthrough
 		case '>':
 			x.Next()
 			x.AwaitAttrib=false
+			*name = x.popElem()
+			if ending { return EndElem }
 		default:
 			if !x.XmlName() {
 				x.Err = errors.New("expected xml-Name or '(/)?>'")
@@ -176,6 +192,7 @@ func (x *XmlParser)ReadElement(name,value *string) int{
 		}
 		*name = x.Buffer.String()
 		if end {
+			x.popElem()
 			x.SkipSpace()
 			if x.Chr!='>' {
 				x.Err = errors.New(fmt.Sprintf(" a tag has to end with '>' but ended '%c'",x.Chr))
@@ -184,6 +201,7 @@ func (x *XmlParser)ReadElement(name,value *string) int{
 			x.Next()
 			return EndElem
 		} else {
+			x.pushElem(*name)
 			x.AwaitAttrib = true
 			return BeginElem
 		}

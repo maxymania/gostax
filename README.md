@@ -5,13 +5,12 @@ Go Streaming API for XML (and More)
 
 ## Why? Go has an Xml De-/Serializer!
 
-Well. The go package "encoding/xml" serializes Go Objects to Xml and deserializes Xml to Go Objects.
-If you want to parse a specific XML Format, it is the Default Go Way to create a Datastructure in go, that matches to the
-XML-Document-Structure. In Regular Cases this Model is very Productive.
+Go has a package called "encoding/xml". It Supports the serialization and deserialization of XML as well as Streaming XML Parsing.
+When I Created this Package, I thought that the "encoding/xml" package is just about Marhsaling and Unmarshaling of Structures (Oops!).
 
-But what is, if you just want a Generic inteface to XML such as StAX, SAX or DOM?
+I wanted a Generic inteface to XML such as StAX, SAX or DOM?
 
-Therefore I created This Package.
+Therefore I created This Package and I hope that it will be useful.
 
 ## How I Can get it?
 
@@ -19,8 +18,6 @@ Download The Package or git-clone it:
 ```
 git clone https://github.com/maxymania/gostax.git
 ```
-
-than copy the folder xml.api within gostax/src/ into your src/ folder of your go project.
 
 ## Package "xml.api/pull"
 
@@ -75,6 +72,7 @@ type XmlReader interface {
 
 ## Package "xml.api/streamxmlp"
 
+Yet another XML Parser in Go.
 This Go Package implements a Basic but Fast (I hope) XML-Parser.
 
 ```
