@@ -1,0 +1,154 @@
+---
+layout: godoc
+title: Package xml.api/push
+---
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "xml.api/push"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index">Index</a></dd>
+			
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+This package implements a Streaming API for writing XML.
+</p>
+<p>
+The Programmer manually calls StartElement(), EndElement(), Attribute() and Text() Methods.
+</p>
+<p>
+This Package has only Intefaces, Not Implementations
+</p>
+
+			</div>
+		</div>
+		
+	
+		<h2 id="pkg-index">Index</h2>
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+		<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="#XmlWriteCloser">type XmlWriteCloser</a></dd>
+				
+				
+			
+				
+				<dd><a href="#XmlWriter">type XmlWriter</a></dd>
+				
+				
+			
+			
+		</dl>
+
+		
+
+		
+			<h4>Package files</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="/target/xmlpush.go">xmlpush.go</a>
+			
+			</span>
+			</p>
+		
+	
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<pre>var MisplacedAttribute error = errors.New(&#34;MisplacedAttribute&#34;)</pre>
+				
+			
+		
+		
+		
+			
+			
+			<h2 id="XmlWriteCloser">type <a href="/target/xmlpush.go?s=542:626#L14">XmlWriteCloser</a></h2>
+			<pre>type XmlWriteCloser interface {
+    XmlWriter
+
+    <span class="comment">// Close implies Flush</span>
+    Close() error
+}</pre>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="XmlWriter">type <a href="/target/xmlpush.go?s=315:540#L2">XmlWriter</a></h2>
+			<pre>type XmlWriter interface {
+    StartElement(name string) error
+    EndElement() error
+    Text(text string) error
+
+    <span class="comment">// Must be Called after StartElement(..)</span>
+    Attribute(name, value string) error
+
+    <span class="comment">// Flushes the Buffer</span>
+    Flush() error
+}</pre>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+		
+		</div>
+	
+
+	
+
+
+
+
+
+
+
